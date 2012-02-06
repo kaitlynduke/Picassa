@@ -20,21 +20,10 @@ public class PlusParenExpression extends ParenExpression{
 	
 	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
-		ArrayList<RGBColor> colors = new ArrayList<RGBColor>();
-		for(Expression op : myOperands)
-		{
-			colors.add(op.evaluate(parameterObject));
-		}
-		double red = 0;
-		double green = 0;
-		double blue = 0;
-		for(RGBColor c : colors)
-		{
-			red += c.getRed();
-			green += c.getGreen();
-			blue += c.getBlue();
-		}
-		return new RGBColor(red, green, blue); 
+		RGBColor left = myOperands.get(0).evaluate(parameterObject);
+		RGBColor right = myOperands.get(1).evaluate(parameterObject);
+		return new RGBColor(left.getRed() + right.getRed(), left.getGreen()
+		+ right.getGreen(), left.getBlue() + right.getBlue()); 
 	}
 
 

@@ -24,17 +24,17 @@ public class VarExpression extends Expression {
 	
 	public RGBColor evaluate(VariableData parameterObject){
 		if (isX)
-			return new RGBColor(parameterObject.x);
+			return new RGBColor(parameterObject.getX());
 		if (isY)
-			return new RGBColor(parameterObject.y);
+			return new RGBColor(parameterObject.getY());
 		if (isT)
-			return new RGBColor(parameterObject.t);
-		if (parameterObject.myMap.size()> 0)
+			return new RGBColor(parameterObject.getT());
+		if (parameterObject.getMyMap().size()> 0)
 		{
-			for(String s : parameterObject.myMap.keySet())
+			for(String s : parameterObject.getMyMap().keySet())
 			{
 				if(s.equals(varName))
-					return parameterObject.myMap.get(s);
+					return parameterObject.getMyMap().get(s);
 			}
 		}
 		throw new ParserException ("No value assigned to this variable" + varName);

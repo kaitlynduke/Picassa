@@ -20,21 +20,10 @@ public class MulParenExpression extends ParenExpression{
 
 	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
-		ArrayList<RGBColor> color = new ArrayList<RGBColor>();
-		for (Expression op : myOperands)
-		{
-			color.add(op.evaluate(parameterObject));
-		}
-		double red = 1;
-		double green = 1;
-		double blue = 1;
-		for (RGBColor c : color)
-		{
-			red = red*c.getRed();
-			green = green*c.getGreen();
-			blue = blue*c.getBlue();
-		}
-		return new RGBColor(red, green, blue);
+		RGBColor left = myOperands.get(0).evaluate(parameterObject);
+		RGBColor right = myOperands.get(1).evaluate(parameterObject);
+		return new RGBColor(left.getRed() * right.getRed(), left.getGreen()
+		* right.getGreen(), left.getBlue() * right.getBlue()); 
 	}
 
 

@@ -61,6 +61,8 @@ public class ParenExpressionParser extends Parser{
 		PE.add(AveParenExpression.getFactory());
 		PE.add(MinParenExpression.getFactory());
 		PE.add(MaxParenExpression.getFactory());
+		PE.add(SumParenExpression.getFactory());
+		PE.add(ProductParenExpression.getFactory());
 		
 		ArrayList<Expression> allExp = new ArrayList<Expression>();
 		data.skipWhiteSpace();

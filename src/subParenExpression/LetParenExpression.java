@@ -24,9 +24,9 @@ public class LetParenExpression extends ParenExpression {
 		// TODO Auto-generated method stub
 		String first = ((VarExpression)myOperands.get(0)).getString();
 		RGBColor second = myOperands.get(1).evaluate(parameterObject); 
-		parameterObject.myMap.put(first, second);
+		parameterObject.getMyMap().put(first, second);
 		RGBColor third = myOperands.get(2).evaluate(parameterObject);
-		parameterObject.myMap.remove(first);
+		parameterObject.getMyMap().remove(first);
 		return third;
 	}
 

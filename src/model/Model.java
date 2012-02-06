@@ -47,9 +47,9 @@ public class Model {
 		Expression toEval = ParserMediator.makeExpression(input);
 		// evaluate at each pixel
 		for (int imageY = 0; imageY < size.height; imageY++) {
-			variable.y = imageToDomainScale(imageY, size.height);
+			variable.setY(imageToDomainScale(imageY, size.height));
 			for (int imageX = 0; imageX < size.width; imageX++) {
-				variable.x = imageToDomainScale(imageX, size.width);
+				variable.setX(imageToDomainScale(imageX, size.width));
 				result.setColor(imageX, imageY, toEval.evaluate(variable)
 						.toJavaColor());
 			}

@@ -12,8 +12,7 @@ import Expressions.Expression;
  * @author Robert C. Duvall (added comments, exceptions, some functions)
  */
 public abstract class Parser {
-	
-//	protected ParserData myData;	
+		
 	public abstract Boolean isThisKind(ParserData data);
 	public abstract Expression parseExpression(ParserData data);
 	
