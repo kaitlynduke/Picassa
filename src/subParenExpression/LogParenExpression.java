@@ -2,8 +2,10 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import model.Expression;
-import model.ExpressionFactory;
+import Expressions.Expression;
+import Expressions.ExpressionFactory;
+import Expressions.ParenExpression;
+
 
 public class LogParenExpression extends SingleParenExpression {
 

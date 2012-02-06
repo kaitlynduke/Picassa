@@ -80,6 +80,10 @@ public class RGBColor implements Comparable<RGBColor>, Iterable<Double> {
 	public double getBlue() {
 		return myBlue;
 	}
+	
+	public double getAverage(){
+		return (myRed + myGreen + myBlue)/3;
+	}
 
 	/**
 	 * Clamps this colors values to its max and min values.

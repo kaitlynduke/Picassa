@@ -2,23 +2,39 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import model.Expression;
-import model.ExpressionFactory;
+import Expressions.Expression;
+import Expressions.ExpressionFactory;
+import Expressions.ParenExpression;
+import Parsers.VariableData;
+
 import model.RGBColor;
-import model.util.ColorCombinations;
+
 
 public class MulParenExpression extends ParenExpression{
 
 	public MulParenExpression(ArrayList<Expression> operands) {
-		super("mul", operands);
+		super(operands, "mul", "*");
 		// TODO Auto-generated constructor stub
 
 	}
 
-	
-	public RGBColor evaluate(double x, double y) {
+	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
-		return ColorCombinations.multiply(myOperands.get(0).evaluate(x, y), myOperands.get(1).evaluate(x, y)); 
+		ArrayList<RGBColor> color = new ArrayList<RGBColor>();
+		for (Expression op : myOperands)
+		{
+			color.add(op.evaluate(parameterObject));
+		}
+		double red = 1;
+		double green = 1;
+		double blue = 1;
+		for (RGBColor c : color)
+		{
+			red = red*c.getRed();
+			green = green*c.getGreen();
+			blue = blue*c.getBlue();
+		}
+		return new RGBColor(red, green, blue);
 	}
 
 
@@ -28,11 +44,7 @@ public class MulParenExpression extends ParenExpression{
 		return new MulParenExpression(operands);
 	}
 	
-	private MulParenExpression(){
-		
-	}
 
-	
 	public static ExpressionFactory getFactory() {
 		// TODO Auto-generated method stub
 		return new ExpressionFactory(new MulParenExpression(null));

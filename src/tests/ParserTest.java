@@ -1,11 +1,12 @@
 package tests;
 
 import java.awt.Color;
-import model.Parser;
-import model.ParserException;
 import model.RGBColor;
 import static org.junit.Assert.*;
 import org.junit.*;
+
+import Parsers.Parser;
+import Parsers.ParserException;
 
 
 public class ParserTest

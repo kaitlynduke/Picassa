@@ -2,18 +2,16 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import Expressions.Expression;
-import Expressions.ExpressionFactory;
-import Expressions.ParenExpression;
+import Expressions.*;
 import Parsers.VariableData;
 
 import model.RGBColor;
 
 
-public class PlusParenExpression extends ParenExpression{
+public class MaxParenExpression extends ParenExpression{
 
-	public PlusParenExpression(ArrayList<Expression> operands) {
-		super(operands,"plus", "+");
+	public MaxParenExpression(ArrayList<Expression> operands) {
+		super(operands,"max");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -21,34 +19,36 @@ public class PlusParenExpression extends ParenExpression{
 	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
 		ArrayList<RGBColor> colors = new ArrayList<RGBColor>();
+		ArrayList<Double> numbers = new ArrayList<Double>();
+		Double max = -1.0;
 		for(Expression op : myOperands)
 		{
 			colors.add(op.evaluate(parameterObject));
 		}
-		double red = 0;
-		double green = 0;
-		double blue = 0;
 		for(RGBColor c : colors)
 		{
-			red += c.getRed();
-			green += c.getGreen();
-			blue += c.getBlue();
+			numbers.add(c.getAverage());
 		}
-		return new RGBColor(red, green, blue); 
+		for(Double n : numbers)
+		{
+			if(n > max)
+				max = n;
+		}
+		return new RGBColor(max); 
 	}
 
 
 	@Override
 	public ParenExpression create(ArrayList<Expression> operands) {
 		// TODO Auto-generated method stub
-		return new PlusParenExpression(operands);
+		return new MaxParenExpression(operands);
 	}
 	
 
 	
 	public static ExpressionFactory getFactory() {
 		// TODO Auto-generated method stub
-		return new ExpressionFactory(new PlusParenExpression(null));
+		return new ExpressionFactory(new MaxParenExpression(null));
 	}
 	
 }

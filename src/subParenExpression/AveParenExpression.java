@@ -2,18 +2,16 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import Expressions.Expression;
-import Expressions.ExpressionFactory;
-import Expressions.ParenExpression;
+import Expressions.*;
 import Parsers.VariableData;
 
 import model.RGBColor;
 
 
-public class PlusParenExpression extends ParenExpression{
+public class AveParenExpression extends ParenExpression{
 
-	public PlusParenExpression(ArrayList<Expression> operands) {
-		super(operands,"plus", "+");
+	public AveParenExpression(ArrayList<Expression> operands) {
+		super(operands,"average");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -34,21 +32,20 @@ public class PlusParenExpression extends ParenExpression{
 			green += c.getGreen();
 			blue += c.getBlue();
 		}
-		return new RGBColor(red, green, blue); 
+		return new RGBColor(red/myOperands.size(), green/myOperands.size(), blue/myOperands.size()); 
 	}
 
 
 	@Override
 	public ParenExpression create(ArrayList<Expression> operands) {
 		// TODO Auto-generated method stub
-		return new PlusParenExpression(operands);
+		return new AveParenExpression(operands);
 	}
 	
-
 	
 	public static ExpressionFactory getFactory() {
 		// TODO Auto-generated method stub
-		return new ExpressionFactory(new PlusParenExpression(null));
+		return new ExpressionFactory(new AveParenExpression(null));
 	}
 	
 }

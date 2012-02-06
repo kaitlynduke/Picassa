@@ -3,17 +3,20 @@ package subParenExpression;
 import java.util.ArrayList;
 import java.util.Random;
 
-import model.Expression;
-import model.ExpressionFactory;
+import Expressions.Expression;
+import Expressions.ExpressionFactory;
+import Expressions.ParenExpression;
+import Parsers.VariableData;
+
 import model.RGBColor;
 
 public class RandomParenExpression extends ParenExpression {
 	
 	public RandomParenExpression(ArrayList<Expression> operands) {
-		super ("random", operands);
+		super (operands, "random");
 	}
 	@Override
-	public RGBColor evaluate(double x, double y) {
+	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
 		Random r = new Random();
 		return new RGBColor(r.nextDouble()*2 - 1,r.nextDouble()*2 - 1,r.nextDouble()*2 - 1);

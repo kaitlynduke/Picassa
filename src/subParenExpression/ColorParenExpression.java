@@ -2,23 +2,33 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import model.Expression;
-import model.ExpressionFactory;
-import model.RGBColor;
-import model.util.ColorCombinations;
+import Expressions.Expression;
+import Expressions.ExpressionFactory;
+import Expressions.ParenExpression;
+import Parsers.VariableData;
 
-public class ColorParenExpression extends ParenExpression{
+import model.RGBColor;
+
+
+public class ColorParenExpression extends ParenExpression {
 
 	public ColorParenExpression(ArrayList<Expression> operands) {
-		super("color", operands);
+		super(operands,"color");
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
-	public RGBColor evaluate(double x, double y) {
+	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
-		return new RGBColor(myOperands.get(0).evaluate(x, y).getRed(), myOperands.get(1).evaluate(x, y).getGreen(), myOperands.get(2).evaluate(x, y).getBlue()); 
+		return new RGBColor(myOperands.get(0).evaluate(parameterObject)
+				.getRed(), myOperands
+				.get(1)
+				.evaluate(
+						parameterObject)
+				.getGreen(), myOperands
+				.get(2)
+				.evaluate(
+						parameterObject)
+				.getBlue());
 	}
 
 	@Override
@@ -26,17 +36,10 @@ public class ColorParenExpression extends ParenExpression{
 		// TODO Auto-generated method stub
 		return new ColorParenExpression(operands);
 	}
-	
-	
-	private ColorParenExpression(){
-		
-	}
 
-	
 	public static ExpressionFactory getFactory() {
 		// TODO Auto-generated method stub
 		return new ExpressionFactory(new ColorParenExpression(null));
 	}
-	
-	
+
 }

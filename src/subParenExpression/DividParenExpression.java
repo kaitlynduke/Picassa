@@ -2,40 +2,40 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import model.Expression;
-import model.ExpressionFactory;
-import model.RGBColor;
-import model.util.ColorCombinations;
+import Expressions.Expression;
+import Expressions.ExpressionFactory;
+import Expressions.ParenExpression;
+import Parsers.VariableData;
 
-public class DividParenExpression extends ParenExpression{
+import model.RGBColor;
+
+
+public class DividParenExpression extends ParenExpression {
 
 	public DividParenExpression(ArrayList<Expression> operands) {
-		super("divid", operands);
+		super(operands, "divid", "/");
 		// TODO Auto-generated constructor stub
 
 	}
 
-	
-	public RGBColor evaluate(double x, double y) {
+	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
-		return ColorCombinations.divide(myOperands.get(0).evaluate(x, y), myOperands.get(1).evaluate(x, y)); 
+		RGBColor left = myOperands.get(0).evaluate(parameterObject);
+		RGBColor right = myOperands.get(1).evaluate(
+				parameterObject);
+		return new RGBColor(left.getRed() / right.getRed(), left.getGreen()
+		/ right.getGreen(), left.getBlue() / right.getBlue());
 	}
-
 
 	@Override
 	public ParenExpression create(ArrayList<Expression> operands) {
 		// TODO Auto-generated method stub
 		return new DividParenExpression(operands);
 	}
-	
-	private DividParenExpression(){
-		
-	}
 
-	
 	public static ExpressionFactory getFactory() {
 		// TODO Auto-generated method stub
 		return new ExpressionFactory(new DividParenExpression(null));
 	}
-	
+
 }

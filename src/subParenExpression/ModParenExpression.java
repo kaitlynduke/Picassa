@@ -2,21 +2,27 @@ package subParenExpression;
 
 import java.util.ArrayList;
 
-import model.Expression;
-import model.ExpressionFactory;
+import Expressions.Expression;
+import Expressions.ExpressionFactory;
+import Expressions.ParenExpression;
+import Parsers.VariableData;
+
 import model.RGBColor;
-import model.util.ColorCombinations;
+
 
 public class ModParenExpression extends ParenExpression{
 
 	public ModParenExpression(ArrayList<Expression> operands) {
-		super("mod", operands);
+		super(operands, "mod", "%");
 		// TODO Auto-generated constructor stub
 	}
 	
-	public RGBColor evaluate(double x, double y) {
+	public RGBColor evaluate(VariableData parameterObject) {
 		// TODO Auto-generated method stub
-		return ColorCombinations.modulus(myOperands.get(0).evaluate(x, y), myOperands.get(1).evaluate(x, y)); 
+		RGBColor left = myOperands.get(0).evaluate(parameterObject);
+		RGBColor right = myOperands.get(1).evaluate(parameterObject);
+		return new RGBColor(left.getRed() % right.getRed(), left.getGreen()
+		% right.getGreen(), left.getBlue() % right.getBlue()); 
 	}
 
 	@Override
