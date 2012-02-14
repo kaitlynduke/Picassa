@@ -23,8 +23,6 @@ public abstract class ParenExpression extends Expression{
 	
 	public abstract ParenExpression create(ArrayList<Expression> operands);
 	
-//	public abstract ExpressionFactory getFactory();
-	
 	public String[] getCmd(){
 		return myCommand;
 	}
